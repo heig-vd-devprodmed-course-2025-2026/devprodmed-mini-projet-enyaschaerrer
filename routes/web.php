@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
+use App\Models\Post;
 
 Route::get('/', function () {
     return view('welcome');
@@ -20,4 +21,31 @@ Route::get('/test-user', function () {
     $user->save();
 
     return $user;
+});
+
+Route::get('/test-post-1', function () {
+    // Récupère la première personne dans la table `users`, peu importe son ID
+    $user = User::first();
+
+    $post = new Post();
+    $post->title = 'Mon premier post';
+    $post->content = 'Ceci est le contenu de mon premier post.';
+
+    $user->posts()->save($post);
+
+    return $post;
+});
+
+Route::get('/test-post-2', function () {
+    // Récupère la personne avec l'ID 1 dans la table `users`
+    $user = User::find(1);
+
+    $post = new Post();
+    $post->content = 'Ceci est le contenu de mon deuxième post.';
+
+    $post->user()->associate($user);
+
+    $post->save();
+
+    return $post;
 });
