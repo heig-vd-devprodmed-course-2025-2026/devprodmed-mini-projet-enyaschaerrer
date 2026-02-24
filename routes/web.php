@@ -49,3 +49,13 @@ Route::get('/test-post-2', function () {
 
     return $post;
 });
+
+
+Route::get('/test-like', function () {
+    $user = User::find(1);
+    $post = Post::find(2);
+
+    $user->likes()->attach($post->id, ['reaction' => 'love']);
+
+    return $post->likes;
+});
