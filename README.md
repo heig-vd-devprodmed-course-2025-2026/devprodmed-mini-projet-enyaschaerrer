@@ -34,9 +34,9 @@ Pour développer et tester le mini-projet en local, voici les étapes à suivre 
 1. Cloner ce dépôt sur votre machine locale :
 
    ```bash
-   git clone git@github.com:heig-vd-devprodmed-course/heig-vd-devprodmed-mini-projet.git
+   git clone git@github.com:heig-vd-devprodmed-course-2025-2026/devprodmed-mini-projet-enyaschaerrer.git
 
-   cd heig-vd-devprodmed-mini-projet
+   cd devprodmed-mini-projet-enyaschaerrer
    ```
 
 2. Installer les dépendances avec npm et Composer :
