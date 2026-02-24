@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class User extends Model
 {
@@ -13,5 +14,13 @@ class User extends Model
 public function posts(): HasMany
 {
     return $this->hasMany(Post::class);
+}
+
+/**
+ * Get the posts liked by the user.
+ */
+public function likes(): BelongsToMany
+{
+    return $this->belongsToMany(Post::class, 'likes')->using(Like::class)->withTimestamps()->withPivot('reaction');
 }
 }
