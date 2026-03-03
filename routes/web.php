@@ -4,12 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use App\Models\Post;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-
-// ... autres routes ...
 Route::get('/test-user', function () {
     $user = new User();
 
