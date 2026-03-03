@@ -70,3 +70,15 @@ Route::get('/', function () {
 
     return view('home', ['posts' => $posts]);
 });
+
+
+Route::get('/profile', function () {
+    $user   = User::where('username', 'janedoe')->first();
+
+    $posts = Post::where('user_id', $user->id)
+        ->orderBy('created_at', 'desc')
+        ->with(['user', 'likes'])
+        ->get();
+
+    return view('profile', ['user' => $user, 'posts' => $posts]);
+});
