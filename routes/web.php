@@ -58,3 +58,8 @@ Route::get('/test-like', function () {
 Route::get('/test-view', function () {
     return view('test');
 });
+
+
+Route::get('/about', function () {
+    return view('about');
+});
