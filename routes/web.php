@@ -63,3 +63,10 @@ Route::get('/test-view', function () {
 Route::get('/about', function () {
     return view('about');
 });
+
+
+Route::get('/', function () {
+    $posts = Post::orderBy('created_at', 'desc')->with('user')->with('likes')->get();
+
+    return view('home', ['posts' => $posts]);
+});
