@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\Post;
+use App\Http\Controllers\ProfileController;
 
 
 Route::get('/about', function () {
@@ -14,3 +15,5 @@ Route::get('/', function () {
 
     return view('home', ['posts' => $posts]);
 });
+
+Route::get('/@{username}', [ProfileController::class, 'show'])->where('username', '[A-Za-z0-9-_]+');
