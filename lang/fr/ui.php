@@ -23,5 +23,26 @@ return [
     'posts' => [
         'no_posts' => 'Aucun post à afficher.',
         'likes_count' => '{0} Aucun like|{1} :count like|[2,*] :count likes',
+        'index' => [
+            'title' => 'Tous les posts',
+            'description' => 'Tous les posts de :app_name.',
+        ],
+        'create' => [
+            'title' => 'Créer un nouveau post',
+            'description' => 'Créez un nouveau post pour partager vos pensées avec le monde sur :app_name.',
+        ],
+        'show' => [
+            'title' => '":post_title" par :first_name :last_name',
+            'title_without_post_title' => 'Post par :first_name :last_name',
+            'description' => '":post_title" par :first_name :last_name.',
+            'description_without_post_title' => 'Post de :first_name :last_name.',
+            'author' => 'Publié par :first_name :last_name',
+        ],
+        'edit' => [
+            'title' => 'Modifier le post ":post_title"',
+            'title_without_post_title' => 'Modifier le post',
+            'description' => 'Modifiez le post ":post_title" pour mettre à jour son contenu.',
+            'description_without_post_title' => 'Modifiez le post pour mettre à jour son contenu.',
+        ],
     ],
 ];
