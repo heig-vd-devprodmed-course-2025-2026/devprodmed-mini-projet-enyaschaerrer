@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Post;
+use App\Models\User;
 
 class PostController extends Controller
 {
@@ -11,7 +13,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $posts = Post::orderBy('created_at', 'desc')->with('user')->with('likes')->get();
+
+        return view('posts.index', ['posts' => $posts]);
     }
 
     /**
@@ -19,7 +23,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create');
     }
 
     /**
@@ -35,7 +39,9 @@ class PostController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $post = Post::with('user')->with('likes')->findOrFail($id);
+
+        return view('posts.show', ['post' => $post]);
     }
 
     /**
@@ -43,7 +49,9 @@ class PostController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $post = Post::findOrFail($id);
+
+        return view('posts.edit', ['post' => $post]);
     }
 
     /**
