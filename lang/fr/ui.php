@@ -7,6 +7,8 @@ return [
         'title' => 'Accueil',
         'description' => "Page d'accueil du réseau social.",
         'introduction' => 'Bienvenue sur :app_name !',
+        'recent_posts' => 'Posts récents',
+        'see_all_posts' => 'Voir tous les posts',
     ],
     'profile' => [
         'title' => 'Profil de :username',
