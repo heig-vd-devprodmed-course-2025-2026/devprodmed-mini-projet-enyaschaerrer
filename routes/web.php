@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Post;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\LikeController;
 
 
 Route::get('/about', function () {
@@ -26,3 +27,5 @@ Route::get('/', function () {
 
     return view('home', ['posts' => $posts]);
 });
+
+Route::match(['put', 'patch'], '/likes/{post}', [LikeController::class, 'update']);
