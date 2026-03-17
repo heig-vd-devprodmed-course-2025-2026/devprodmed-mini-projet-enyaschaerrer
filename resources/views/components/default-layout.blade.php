@@ -25,19 +25,19 @@
                    <a href="{{ url('/') }}" class="block hover:opacity-80 transition">
                        {{ config('app.name') }}
                    </a>
-                                       <a href="{{ url('/posts') }}"
+                    
+                   <a href="{{ url('/posts') }}"
                         class="block bg-teal-700 dark:bg-purple-900px-3 py-1 rounded-md hover:bg-teal-800 dark:hover:bg-purple-800">
                        {{ __('ui.posts.index.title') }}
                    </a>
                 </div>
 
-                    <a href="{{ url('/profile') }}" class="block hover:opacity-80 transition">
-                        <img
+                <a href="{{ url('/my-profile') }}" class="block hover:opacity-80 transition">                        <img
                         src="/icons/profile.svg"
                         alt="{{ __('ui.profile.title') }}"
                         class="h-8 w-8 rounded-full"
                         />
-</a>
+                </a>
                 </div>
             </nav>
         </header>

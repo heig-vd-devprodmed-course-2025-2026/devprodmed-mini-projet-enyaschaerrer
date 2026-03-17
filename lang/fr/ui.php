@@ -14,6 +14,8 @@ return [
         'title' => 'Profil de :username',
         'description' => 'Page de profil pour :username.',
         'number_of_posts' => '{0} Aucune publication|{1} :count publication|[2,*] :count publications',
+        'posts_heading' => 'Posts de :first_name :last_name',
+        'member_since' => 'Membre depuis le :date.',
     ],
     'about' => [
         'title' => 'À propos',
