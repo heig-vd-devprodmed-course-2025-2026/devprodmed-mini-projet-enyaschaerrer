@@ -5,6 +5,7 @@ use App\Models\Post;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\MyProfileController;
 
 
 Route::get('/about', function () {
@@ -29,3 +30,5 @@ Route::get('/', function () {
 });
 
 Route::match(['put', 'patch'], '/likes/{post}', [LikeController::class, 'update']);
+
+Route::singleton('my-profile', MyProfileController::class);
