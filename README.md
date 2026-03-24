@@ -48,7 +48,7 @@ Pour développer et tester le mini-projet en local, voici les étapes à suivre 
    ```
 
 3. Copier le fichier `.env.example` en `.env` et configurer les variables
-   d'environnement.
+   d'environnement (si on veut changer quelque chose en particulier, comme de db par exemple).
 4. Générer la clé d'application Laravel :
 
    ```bash
@@ -73,7 +73,7 @@ S'il est nécessaire de réinitialiser la base de données, utiliser la commande
 7. Optionnel : en mode développement, il est possible de peupler la base de données avec des données fictives :
 
     ```bash
-    migrate db:seed
+    php artisan db:seed
     ```
 
 8. Démarrer le serveur de développement Laravel :
