@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\MyProfileController;
+use App\Http\Controllers\AuthController;
 
 
 Route::get('/about', function () {
@@ -32,3 +33,8 @@ Route::get('/', function () {
 Route::match(['put', 'patch'], '/likes/{post}', [LikeController::class, 'update']);
 
 Route::singleton('my-profile', MyProfileController::class);
+
+Route::controller(AuthController::class)->group(function () {
+    Route::get('/auth/register', 'showRegister');
+    Route::post('/auth/register', 'register');
+});
