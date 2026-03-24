@@ -106,5 +106,28 @@ return [
             'already_have_account' => 'Vous avez déjà un compte ?',
             'login' => 'Se connecter',
         ],
+        'login' => [
+            'title' => 'Connexion',
+            'description' => 'Connectez-vous à votre compte :app_name.',
+            'form' => [
+                'fields' => [
+                    'email' => [
+                        'label' => 'Adresse e-mail',
+                        'placeholder' => 'Entrez votre adresse e-mail',
+                    ],
+                    'password' => [
+                        'label' => 'Mot de passe',
+                        'placeholder' => 'Entrez votre mot de passe',
+                    ],
+                    'remember' => [
+                        'label' => 'Se souvenir de moi',
+                    ],
+                ],
+                'actions' => [
+                    'submit' => 'Se connecter',
+                ],
+            ],
+            'no_account' => 'Pas encore de compte ?',
+        ],    
     ],
 ];
