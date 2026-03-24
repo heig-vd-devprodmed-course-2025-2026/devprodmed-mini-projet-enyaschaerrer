@@ -38,3 +38,14 @@ Route::controller(AuthController::class)->group(function () {
     Route::get('/auth/register', 'showRegister');
     Route::post('/auth/register', 'register');
 });
+
+Route::controller(AuthController::class)->group(function () {
+    // ... autres routes ...
+    Route::get('/auth/login', 'showLogin');
+    Route::post('/auth/login', 'login');
+});
+
+Route::controller(AuthController::class)->group(function () {
+    // ... autres routes ...
+    Route::post('/auth/logout', 'logout');
+});
