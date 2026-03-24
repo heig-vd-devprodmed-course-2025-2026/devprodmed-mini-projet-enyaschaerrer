@@ -68,4 +68,43 @@ return [
             ],
         ],
     ],
+    'auth' => [
+        'register' => [
+            'title' => 'Inscription',
+            'description' => 'Créez votre compte sur :app_name pour commencer à partager vos idées.',
+            'form' => [
+                'fields' => [
+                    'username' => [
+                        'label' => "Nom d'utilisateur",
+                        'placeholder' => "Choisissez votre nom d'utilisateur",
+                    ],
+                    'email' => [
+                        'label' => 'Adresse e-mail',
+                        'placeholder' => 'Entrez votre adresse e-mail',
+                    ],
+                    'first_name' => [
+                        'label' => 'Prénom',
+                        'placeholder' => 'Entrez votre prénom',
+                    ],
+                    'last_name' => [
+                        'label' => 'Nom',
+                        'placeholder' => 'Entrez votre nom',
+                    ],
+                    'password' => [
+                        'label' => 'Mot de passe',
+                        'placeholder' => 'Choisissez un mot de passe sécurisé',
+                    ],
+                    'password_confirmation' => [
+                        'label' => 'Confirmation du mot de passe',
+                        'placeholder' => 'Confirmez votre mot de passe',
+                    ],
+                ],
+                'actions' => [
+                    'submit' => "S'inscrire",
+                ],
+            ],
+            'already_have_account' => 'Vous avez déjà un compte ?',
+            'login' => 'Se connecter',
+        ],
+    ],
 ];
