@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 
@@ -31,8 +31,7 @@ class MyProfileController extends Controller
      */
     public function show()
     {
-        $user = User::where('id', 2)->first();
-
+        $user = Auth::user();
         return view('my-profile.show', ['user' => $user]);
     }
 
@@ -41,8 +40,7 @@ class MyProfileController extends Controller
      */
     public function edit()
     {
-        $user = User::where('id', 2)->first();
-
+        $user = Auth::user();
         return view('my-profile.edit', ['user' => $user]);
     }
 
@@ -51,8 +49,8 @@ class MyProfileController extends Controller
      */
     public function update(Request $request)
     {
-        $user = User::where('id', 2)->first();
-
+        $user = $request->user();
+        
         $validated = $request->validate([
             'username' => ['required', 'alpha_dash:ascii', 'min:2', 'max:255', Rule::unique('users')->ignore($user->id)],
             'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
@@ -98,7 +96,7 @@ class MyProfileController extends Controller
      */
     public function destroy()
     {
-        $user = User::where('id', 2)->first();
+        $user = Auth::user();
 
         if ($user->profile_picture && Storage::disk('public')->exists($user->profile_picture)) {
             Storage::disk('public')->delete($user->profile_picture);
