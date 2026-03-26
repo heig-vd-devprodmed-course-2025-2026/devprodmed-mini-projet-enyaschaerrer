@@ -22,7 +22,8 @@ Route::get('/', function () {
 
 Route::get('/@{username}', [ProfileController::class, 'show'])->where('username', '[A-Za-z0-9-_]+');
 
-Route::resource('posts', PostController::class);
+Route::resource('posts', PostController::class)->except(['index', 'show'])->middleware('auth');
+Route::resource('posts', PostController::class)->only(['index', 'show']);
 
 Route::get('/', function () {
     $posts = Post::orderBy('created_at', 'desc')->with('user')->with('likes')->limit(3)->get();
@@ -30,9 +31,9 @@ Route::get('/', function () {
     return view('home', ['posts' => $posts]);
 });
 
-Route::match(['put', 'patch'], '/likes/{post}', [LikeController::class, 'update']);
+Route::match(['put', 'patch'], '/likes/{post}', [LikeController::class, 'update'])->middleware('auth');
 
-Route::singleton('my-profile', MyProfileController::class);
+Route::singleton('my-profile', MyProfileController::class)->destroyable()->middleware('auth');
 
 Route::controller(AuthController::class)->group(function () {
     Route::get('/auth/register', 'showRegister');
@@ -41,11 +42,11 @@ Route::controller(AuthController::class)->group(function () {
 
 Route::controller(AuthController::class)->group(function () {
     // ... autres routes ...
-    Route::get('/auth/login', 'showLogin');
+    Route::get('/auth/login', 'showLogin')->name('login');    
     Route::post('/auth/login', 'login');
 });
 
 Route::controller(AuthController::class)->group(function () {
     // ... autres routes ...
-    Route::post('/auth/logout', 'logout');
+    Route::post('/auth/logout', 'logout')->middleware('auth');
 });
