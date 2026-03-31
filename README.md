@@ -48,7 +48,7 @@ Pour développer et tester le mini-projet en local, voici les étapes à suivre 
    ```
 
 3. Copier le fichier `.env.example` en `.env` et configurer les variables
-   d'environnement (si on veut changer quelque chose en particulier, comme de base de données par exemple).
+   d'environnement (si on veut changer quelque chose en particulier, comme de bdd par exemple).
 4. Générer la clé d'application Laravel :
 
    ```bash
