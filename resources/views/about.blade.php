@@ -8,7 +8,7 @@
     </x-slot>
 
     <h1 class="text-2xl font-bold">
-    {{ __('ui.about.title') }}
+        {{ __('ui.about.title') }}
     </h1>
 
     <p class="mt-4">

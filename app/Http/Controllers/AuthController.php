@@ -38,7 +38,7 @@ class AuthController extends Controller
         return redirect('/');
     }
 
-        public function showLogin()
+    public function showLogin()
     {
         return view('auth.login');
     }
@@ -63,7 +63,7 @@ class AuthController extends Controller
         ])->onlyInput('email');
     }
 
-        public function logout(Request $request)
+    public function logout(Request $request)
     {
         Auth::logout();
 

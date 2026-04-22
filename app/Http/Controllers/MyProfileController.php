@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -32,6 +31,7 @@ class MyProfileController extends Controller
     public function show()
     {
         $user = Auth::user();
+
         return view('my-profile.show', ['user' => $user]);
     }
 
@@ -41,6 +41,7 @@ class MyProfileController extends Controller
     public function edit()
     {
         $user = Auth::user();
+
         return view('my-profile.edit', ['user' => $user]);
     }
 
@@ -50,9 +51,9 @@ class MyProfileController extends Controller
     public function update(Request $request)
     {
         $user = $request->user();
-        
+
         $validated = $request->validate([
-            'username' => ['required', 'alpha_dash:ascii', 'min:2', 'max:255', Rule::unique('users')->ignore($user->id)],
+            'username' => ['required', 'string', 'alpha_dash:ascii', 'min:2', 'max:255', Rule::unique('users')->ignore($user->id)],
             'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],

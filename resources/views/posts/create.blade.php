@@ -18,7 +18,7 @@
             </p>
         </header>
 
-                <form method="POST" action="{{ url('/posts') }}">
+        <form method="POST" action="{{ url('/posts') }}">
             @csrf
 
             <div class="mb-4">

@@ -15,22 +15,24 @@
         @endif
     </x-slot>
 
-    <h1 class="text-2xl font-bold dark:text-white">
-        @if ($post->title)
-            {{ __('ui.posts.edit.title', ['post_title' => $post->title]) }}
-        @else
-            {{ __('ui.posts.edit.title_without_post_title') }}
-        @endif
-    </h1>
+    <article class="bg-white dark:bg-slate-800 rounded-lg shadow-md p-6">
+        <header class="mb-6">
+            <h1 class="text-3xl font-bold dark:text-white mb-2">
+                @if ($post->title)
+                    {{ __('ui.posts.edit.title', ['post_title' => $post->title]) }}
+                @else
+                    {{ __('ui.posts.edit.title_without_post_title') }}
+                @endif
+            </h1>
 
-    <p class="mt-4 dark:text-gray-300">
-        @if ($post->title)
-            {{ __('ui.posts.edit.description', ['post_title' => $post->title]) }}
-        @else
-            {{ __('ui.posts.edit.description_without_post_title') }}
-        @endif
-    </p>
-
+            <p class="mt-4 dark:text-gray-300">
+                @if ($post->title)
+                    {{ __('ui.posts.edit.description', ['post_title' => $post->title]) }}
+                @else
+                    {{ __('ui.posts.edit.description_without_post_title') }}
+                @endif
+            </p>
+        </header>
 
         <form method="POST" action="{{ url('/posts/' . $post->id) }}">
             @csrf
@@ -67,13 +69,11 @@
                             class="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-md hover:bg-gray-300 dark:hover:bg-gray-600">
                             {{ __('ui.posts.form.actions.cancel') }}
                         </a>
-                        
                         <button type="submit" form="delete-post-form"
-                          onclick="return confirm('{{ __('ui.posts.form.actions.delete_confirm') }}')"
+                            onclick="return confirm('{{ __('ui.posts.form.actions.delete_confirm') }}')"
                             class="px-4 py-2 bg-red-600 dark:bg-red-900 text-white rounded-md hover:bg-red-700 dark:hover:bg-red-800 cursor-pointer">
-                           {{ __('ui.posts.form.actions.delete') }}
+                            {{ __('ui.posts.form.actions.delete') }}
                         </button>
-
                     </div>
                     <button type="submit"
                         class="px-4 py-2 bg-teal-600 dark:bg-purple-900 text-white rounded-md hover:bg-teal-700 dark:hover:bg-purple-800 cursor-pointer">
@@ -87,4 +87,5 @@
             @csrf
             @method('DELETE')
         </form>
-    </x-default-layout>
+    </article>
+</x-default-layout>

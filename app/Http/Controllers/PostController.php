@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Post;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
@@ -15,7 +15,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::orderBy('created_at', 'desc')->with('user')->with('likes')->get();
-        Gate::authorize('update', $posts);
+
         return view('posts.index', ['posts' => $posts]);
     }
 
@@ -34,7 +34,7 @@ class PostController extends Controller
     {
         $validated = $request->validate([
             'title' => 'nullable|string|max:255',
-            'content' => 'required|string|max:5000|min:3',
+            'content' => 'required|string|max:5000',
         ]);
 
         $user = $request->user();
@@ -79,6 +79,8 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
 
+        Gate::authorize('update', $post);
+
         return view('posts.edit', ['post' => $post]);
     }
 
@@ -87,9 +89,9 @@ class PostController extends Controller
      */
     public function update(Request $request, string $id)
     {
-       $validated = $request->validate([
+        $validated = $request->validate([
             'title' => 'nullable|string|max:255',
-            'content' => 'required|string|max:5000|min:3',
+            'content' => 'required|string|max:5000',
         ]);
 
         $post = Post::findOrFail($id);
@@ -114,6 +116,7 @@ class PostController extends Controller
         Gate::authorize('delete', $post);
 
         $post->delete();
+
         return redirect("/posts");
     }
 }

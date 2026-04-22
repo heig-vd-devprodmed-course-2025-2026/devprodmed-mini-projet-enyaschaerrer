@@ -48,7 +48,6 @@
                 <span title="{{ $post->created_at->isoFormat('LLLL') }}">
                     {{ $post->created_at->diffForHumans() }}
                 </span>
-                ·
                 @can('update', $post)
                     ·
                     <a href="{{ url('/posts/' . $post->id . '/edit') }}">
@@ -68,7 +67,7 @@
             </p>
         </div>
 
-                <footer class="pt-4 border-t border-gray-200 dark:border-gray-700">
+        <footer class="pt-4 border-t border-gray-200 dark:border-gray-700">
             @auth
                 <form method="POST" action="{{ url('/likes/' . $post->id) }}" class="mb-4">
                     @csrf
@@ -101,7 +100,6 @@
                     </div>
                 </form>
             @endauth
-
             <ul class="flex flex-wrap gap-2">
                 @forelse ($post->likes as $user)
                     <li class="flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400">
