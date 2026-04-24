@@ -6,6 +6,7 @@ use App\Http\Controllers\MyProfileController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TokenController;
+use App\Http\Controllers\SavedPostController;
 use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 
@@ -27,6 +28,9 @@ Route::resource('posts', PostController::class)->only(['index', 'show']);
 Route::singleton('my-profile', MyProfileController::class)->destroyable()->middleware('auth');
 
 Route::match(['put', 'patch'], '/likes/{post}', [LikeController::class, 'update'])->middleware('auth');
+
+// posts sauvegardés
+Route::resource('saved-posts', SavedPostController::class)->only(['index', 'store', 'destroy'])->middleware('auth');
 
 Route::controller(AuthController::class)->group(function () {
     Route::get('/auth/register', 'showRegister');
