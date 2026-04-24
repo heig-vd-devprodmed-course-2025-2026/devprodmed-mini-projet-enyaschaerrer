@@ -37,3 +37,19 @@ Route::controller(AuthController::class)->group(function () {
 });
 
 Route::resource('tokens', TokenController::class)->only(['index', 'create', 'store', 'destroy'])->middleware('auth');
+
+
+use App\Models\SavedPost;
+
+
+// route de test
+// Route::get('/test-saved_post', function () {
+//     $saved_post= new SavedPost();
+
+//     $saved_post->user_id = 1;
+//     $saved_post->post_id = 1;
+
+//     $saved_post->save();
+
+//     return $saved_post;
+// });
