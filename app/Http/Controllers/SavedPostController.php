@@ -18,6 +18,12 @@ class SavedPostController extends Controller
     }
 
     // Sauvegarde un post (toggle)
+    // J'ai utilisé Claude (web) pour m'aider à construire cette fonction
+    // Fonctionnement: on vérifie que l'utilisateur est authentifié.
+    // On cherche dans les posts enregistrés un post qui a le même utilisateur 
+    // et même id de post que celui qu'on veut enregistrer. Si oui, on le retire (toggle). 
+    // Si pas trouvé, on crée un enregistrement de post et on redirige vers le post (visualisation) 
+    // concerné quand c'est fini.
     public function store(Post $post) {
     
         $user = Auth::user();
