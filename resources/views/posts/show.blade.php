@@ -127,6 +127,18 @@
                         {{ trans_choice('ui.posts.likes_count', 0) }}
                     </span>
                 @endforelse
+
+                <!-- css du bouton généré par Claude (web), afin d'agrandir le bouton et le faire tenir sur une seule ligne -->
+                <!-- css du formulaire généré par Claude pour qu'il passe à la ligne (w-full) et pour ajouter des marges -->
+                @auth
+                    <form method="POST" action="{{ url('/saved-posts/' . $post->id) }}" class="w-full mt-2 mb-4">
+                        @csrf
+                        <button type="submit"
+                            class="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-600 cursor-pointer">                        
+                            {{ $isSaved ? '🔖 Enregistré' : '🏷️ Enregistrer' }}
+                        </button>
+                    </form>
+                @endauth
             </ul>
         </footer>
     </article>

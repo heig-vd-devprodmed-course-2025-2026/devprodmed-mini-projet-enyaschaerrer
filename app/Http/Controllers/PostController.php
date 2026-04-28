@@ -58,6 +58,7 @@ class PostController extends Controller
 
         $user = Auth::user();
         $reaction = null;
+        $isSaved = false;
 
         if ($user) {
             $reaction = $post->likes()->where('user_id', $user->id)->first();
@@ -67,9 +68,12 @@ class PostController extends Controller
                 // Récupère la réaction au post
                 $reaction = $reaction->pivot->reaction;
             }
+
+            // regarde si le post est déjà sauvegardé
+            $isSaved = $user->savedPosts()->where('post_id', $post->id)->exists();
         }
 
-        return view('posts.show', ['post' => $post, 'reaction' => $reaction]);
+        return view('posts.show', ['post' => $post, 'reaction' => $reaction, 'isSaved' => $isSaved]);
     }
 
     /**

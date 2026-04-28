@@ -36,15 +36,24 @@
             {{ __('ui.my_profile.show.member_since', ['date' => $user->created_at->isoFormat('LL')]) }}
         </p>
 
-        <div class="flex flex-col sm:flex-row justify-center gap-3 mt-6">
+        <!-- ajouté flex-wrap au div afin que tout rentre dans la card profil -->
+        <div class="flex flex-col flex-wrap sm:flex-row justify-center gap-3 mt-6">
             <a href="{{ url('/my-profile/edit') }}"
                 class="px-4 py-2 bg-teal-600 dark:bg-purple-900 text-white rounded-md hover:bg-teal-700 dark:hover:bg-purple-800">
                 {{ __('ui.my_profile.show.actions.edit') }}
             </a>
+
             <a href="{{ url('/@' . $user->username) }}"
                 class="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-md hover:bg-gray-300 dark:hover:bg-gray-600">
                 {{ __('ui.my_profile.show.actions.view_public') }}
             </a>
+
+            <!-- posts sauvegardés -->
+            <a href="{{ url('/saved-posts') }}"
+                class="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-md hover:bg-gray-300 dark:hover:bg-gray-600">
+                {{ __('ui.saved_posts.show.actions.view') }}
+            </a>
+
             <a href="{{ url('/tokens') }}"
                 class="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-md hover:bg-gray-300 dark:hover:bg-gray-600">
                 {{ __('ui.my_profile.show.actions.manage_tokens') }}
