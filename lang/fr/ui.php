@@ -230,4 +230,16 @@ return [
             'author' => 'Publié par :first_name :last_name',
         ],
     ],
+    'saved_posts' => [
+        'index' => [
+            'title' => 'Mes posts enregistrés',
+            'description' => 'Les posts qui ont été sauvegardés sur mon profil',
+            'empty' => 'Aucun post enregistré'
+        ],
+        'show' => [
+            'actions' => [
+                'view' => 'Voir mes posts enregistrés'
+            ]
+        ]
+    ],
 ];
