@@ -30,6 +30,13 @@ Route::singleton('my-profile', MyProfileController::class)->destroyable()->middl
 Route::match(['put', 'patch'], '/likes/{post}', [LikeController::class, 'update'])->middleware('auth');
 
 // posts sauvegardés
+// J'ai utilisé Claude (web) pour m'aider à clarifier quelle syntaxe je devrais utiliser pour déclarer mes routes,
+// entre Route::resource, Route:: match, Route::controller, etc.
+// Récap de ce que j'ai compris : Route::get/post/match c'est pour des routes isolées avec méthode HTTP précise.
+// Route::resource pour générer toutes méthodes CRUD pour un contrôleur, puis on peut limiter avec only ou except.
+// Route::singleton pour une ressource unique. 
+// Route::controller pour plusieurs routes avec méthodes HTTP et URLs différentes mais qui partagent le même contrôleur.
+// J'ai donc choisi Route::resource car ça jouait bien et je trouvais le plus simple syntaxiquement à comprendre.
 Route::resource('saved-posts', SavedPostController::class)->only(['index', 'store', 'destroy'])->middleware('auth');
 
 Route::controller(AuthController::class)->group(function () {
