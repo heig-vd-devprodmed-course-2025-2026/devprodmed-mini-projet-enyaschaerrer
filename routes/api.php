@@ -13,3 +13,10 @@ Route::apiResource('v1/posts', ApiPostController::class)
     ->middlewareFor(['store'], ['auth:sanctum', 'abilities:posts:create'])
     ->middlewareFor(['update'], ['auth:sanctum', 'abilities:posts:update'])
     ->middlewareFor(['destroy'], ['auth:sanctum', 'abilities:posts:delete']);
+
+
+Route::apiResource('v1/saved-posts', ApiSavedPostController::class)
+    ->middlewareFor(['index'], ['auth:sanctum', 'abilities:saved-posts:read'])
+    ->middlewareFor(['store'], ['auth:sanctum', 'abilities:saved-posts:create'])
+    ->middlewareFor(['destroy'], ['auth:sanctum', 'abilities:saved-posts:delete']);
+

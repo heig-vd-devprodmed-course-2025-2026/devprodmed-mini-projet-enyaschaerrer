@@ -38,7 +38,7 @@ Route::match(['put', 'patch'], '/likes/{post}', [LikeController::class, 'update'
 // Route::controller pour plusieurs routes avec méthodes HTTP et URLs différentes mais qui partagent le même contrôleur.
 // J'ai donc choisi Route::resource pour index et destroy car ça jouait bien et je trouvais le plus simple syntaxiquement à comprendre.
 // Par contre, j'ai remarqué plus tard que je devais obtenir l'id du post à sauver quand qqn soumet le formulaire pour sauvegarder (post).
-// Donc, j'ai fait une route séparée pour ça.
+// Donc, j'ai fait une route séparée pour ça. J'aurais aussi pu envoyer l'id (hidden) dans le corps de la requête POST.
 Route::resource('saved-posts', SavedPostController::class)->only(['index', 'destroy'])->middleware('auth');
 Route::post('/saved-posts/{post}', [SavedPostController::class, 'store'])->middleware('auth');
 
