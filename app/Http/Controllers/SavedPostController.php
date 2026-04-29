@@ -49,14 +49,12 @@ class SavedPostController extends Controller
     }
 
     // Supprime un post sauvegardé
-    public function destroy(Post $post)
+    public function destroy(SavedPost $savedPost)
     {
         $user = Auth::user();
 
-        SavedPost::where('user_id', $user->id)
-            ->where('post_id', $post->id)
-            ->delete();
+        $savedPost->delete();
 
-        return redirect("/posts/$post->id");
+        return redirect("/saved-posts");
     }
 }
