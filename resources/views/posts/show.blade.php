@@ -131,14 +131,25 @@
                 <!-- css du bouton généré par Claude (web), afin d'agrandir le bouton et le faire tenir sur une seule ligne -->
                 <!-- css du formulaire généré par Claude pour qu'il passe à la ligne (w-full) et pour ajouter des marges -->
                 @auth
-                    <form method="POST" action="{{ url('/saved-posts/' . $post->id) }}" class="w-full mt-2 mb-4">
-                        @csrf
-                        <button type="submit"
-                            class="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-600 cursor-pointer">                        
-                            {{ $isSaved ? '🔖 Enregistré' : '🏷️ Enregistrer' }}
-                        </button>
-                    </form>
+                    @if ($postSaved)
+                        <form method="POST" action="{{ url('/saved-posts/' . $postSaved->id) }}" class="w-full mt-2 mb-4">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="cursor-pointer px-4 py-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-600">
+                                🔖 Enregistré
+                            </button>
+                        </form>
+                    @else
+                        <form method="POST" action="{{ url('/saved-posts') }}" class="w-full mt-2 mb-4">
+                            @csrf
+                            <input type="hidden" name="post_id" value="{{ $post->id }}">
+                            <button type="submit" class="cursor-pointer px-4 py-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-600">
+                                🏷️ Enregistrer
+                            </button>
+                        </form>
+                    @endif
                 @endauth
+
             </ul>
         </footer>
     </article>
