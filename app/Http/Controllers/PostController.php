@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\SavedPost;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -58,7 +59,7 @@ class PostController extends Controller
 
         $user = Auth::user();
         $reaction = null;
-        $isSaved = false;
+        $postSaved = null;
 
         if ($user) {
             $reaction = $post->likes()->where('user_id', $user->id)->first();
@@ -69,11 +70,13 @@ class PostController extends Controller
                 $reaction = $reaction->pivot->reaction;
             }
 
-            // regarde si le post est déjà sauvegardé
-            $isSaved = $user->savedPosts()->where('post_id', $post->id)->exists();
-        }
+            // contient le SavedPost si sauvegardé, sinon null (la méthode destroy a besoin de l'id du post sauvé 
+            // en particulier et pas du post concerné)
+            $postSaved = SavedPost::where('user_id', $user->id)
+                ->where('post_id', $post->id)
+                ->first();         }
 
-        return view('posts.show', ['post' => $post, 'reaction' => $reaction, 'isSaved' => $isSaved]);
+        return view('posts.show', ['post' => $post, 'reaction' => $reaction, 'postSaved' => $postSaved]);
     }
 
     /**

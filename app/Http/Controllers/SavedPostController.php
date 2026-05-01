@@ -23,27 +23,18 @@ class SavedPostController extends Controller
     // Sauvegarde un post (toggle)
     // J'ai utilisé Claude (web) pour m'aider à construire cette fonction
     // Fonctionnement: on vérifie que l'utilisateur est authentifié.
-    // On cherche dans les posts enregistrés un post qui a le même utilisateur 
-    // et même id de post que celui qu'on veut enregistrer. Si oui, on le retire (toggle). 
-    // Si pas trouvé, on crée un enregistrement de post et on redirige vers le post (visualisation) 
+    // On cherche dans les posts s'il y a le post avec l'id qui est passé dans le corps de la requête.
+    // Si trouvé, on crée un enregistrement de post et on redirige vers le post (visualisation) 
     // concerné quand c'est fini.
-    public function store(Post $post) {
+    public function store(Request $request) {
     
         $user = Auth::user();
+        $post = Post::findOrFail($request->post_id);
         
-        // si le post était déjà sauvegardé
-        $existing = SavedPost::where('user_id', $user->id)
-            ->where('post_id', $post->id)
-            ->first();
-
-        if ($existing) {
-            $existing->delete();
-        } else {
-            $savedPost = new SavedPost();
-            $savedPost->user_id = $user->id;
-            $savedPost->post_id = $post->id;
-            $savedPost->save();
-        }
+        $savedPost = new SavedPost();
+        $savedPost->user_id = $user->id;
+        $savedPost->post_id = $post->id;
+        $savedPost->save();
 
         return redirect("posts/$post->id");
     }
@@ -56,6 +47,8 @@ class SavedPostController extends Controller
 
         $savedPost->delete();
 
-        return redirect("/saved-posts");
+        // comme ça j'ai 2 comportements différents : quand je supprime depuis posts show, ca reste sur le post. 
+        // quand je supprime depuis la liste des enregistrements qui s'accède depuis le profil, ça reste sur la liste des enregistrés
+        return back();
     }
 }

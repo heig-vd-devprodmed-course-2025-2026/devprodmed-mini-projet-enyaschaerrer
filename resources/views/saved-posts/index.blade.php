@@ -19,15 +19,16 @@
      c'est pourquoi quand je mets $savedPost->post, ça va chercher le Post associé grâce à la relation post() que j'ai définie dans le modèle SavedPost -->
     <div class="mt-8 space-y-6">
         @forelse ($savedPosts as $savedPost)
-        
-            <x-post-card :post="$savedPost->post" />
-            <form method="POST" action="{{ url('/saved-posts/' . $savedPost->id) }}">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 px-2 py-1 rounded-md">
-                    🔖 Retirer
-                </button>
-            </form>
+            <div>
+                <x-post-card :post="$savedPost->post" />
+                <form method="POST" action="{{ url('/saved-posts/' . $savedPost->id) }}">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 px-2 py-1 rounded-md">
+                        🔖 Retirer
+                    </button>
+                </form>
+            </div>
 
         @empty
             <p class="mt-4 dark:text-gray-300">{{ __('ui.saved_posts.index.empty') }}</p>
