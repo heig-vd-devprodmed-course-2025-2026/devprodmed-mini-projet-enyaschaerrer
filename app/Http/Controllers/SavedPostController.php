@@ -32,6 +32,9 @@ class SavedPostController extends Controller
         $post = Post::findOrFail($request->post_id);
         
         $savedPost = new SavedPost();
+
+        // enregistre le post chez l'utilisateur connecté. donc pas besoin de la Policy, 
+        // car personne peut enregister un post chez qqn d'autre
         $savedPost->user_id = $user->id;
         $savedPost->post_id = $post->id;
         $savedPost->save();
@@ -40,9 +43,12 @@ class SavedPostController extends Controller
     }
 
     // Supprime un post sauvegardé
-    public function destroy(SavedPost $savedPost)
+    public function destroy(string $id)
     {
-        $user = Auth::user();
+        $savedPost = SavedPost::findOrFail($id);
+        
+        // seulement la personne qui a enregistré le post peut le désenregistrer
+        Gate::authorize('delete', $savedPost);
 
         $savedPost->delete();
 
