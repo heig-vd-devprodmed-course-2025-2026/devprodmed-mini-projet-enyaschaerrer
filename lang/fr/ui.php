@@ -169,6 +169,9 @@ return [
                         'posts_read' => 'Lire les posts',
                         'posts_update' => 'Modifier des posts',
                         'posts_delete' => 'Supprimer des posts',
+                        'saved-posts_read' => 'Lire les posts enregistrés',
+                        'saved-posts_create' => 'Créer des enregistrements de posts',
+                        'saved-posts_delete' => 'Supprimer des enregistrements de posts',
                     ],
                 ],
                 'content' => [

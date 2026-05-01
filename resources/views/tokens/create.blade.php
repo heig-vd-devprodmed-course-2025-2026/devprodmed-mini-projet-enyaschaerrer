@@ -66,6 +66,32 @@
                             {{ __('ui.tokens.form.fields.scopes.options.posts_delete') }}
                         </label>
                     </div>
+
+                    <!-- pour les posts sauvés -->
+                    <div class="flex items-center mb-2">
+                        <input type="checkbox" id="scope-saved-posts:read" name="scopes[]" value="saved-posts:read"
+                            {{ in_array('saved-posts:read', old('scopes', [])) ? 'checked' : '' }} class="mr-2">
+                        <label for="scope-saved-posts:read" class="text-sm text-gray-700 dark:text-gray-300">
+                            {{ __('ui.tokens.form.fields.scopes.options.saved-posts_read') }}
+                        </label>
+                    </div>
+
+                    <div class="flex items-center mb-2">
+                        <input type="checkbox" id="scope-saved-posts:create" name="scopes[]" value="saved-posts:create"
+                            {{ in_array('saved-posts:create', old('scopes', [])) ? 'checked' : '' }} class="mr-2">
+                        <label for="scope-saved-posts:create" class="text-sm text-gray-700 dark:text-gray-300">
+                            {{ __('ui.tokens.form.fields.scopes.options.saved-posts_create') }}
+                        </label>
+                    </div>
+
+                    <div class="flex items-center mb-2">
+                        <input type="checkbox" id="scope-saved-posts:delete" name="scopes[]" value="saved-posts:delete"
+                            {{ in_array('saved-posts:delete', old('scopes', [])) ? 'checked' : '' }} class="mr-2">
+                        <label for="scope-saved-posts:delete" class="text-sm text-gray-700 dark:text-gray-300">
+                            {{ __('ui.tokens.form.fields.scopes.options.saved-posts_delete') }}
+                        </label>
+                    </div>
+
                     @error('scopes')
                         <p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
                     @enderror

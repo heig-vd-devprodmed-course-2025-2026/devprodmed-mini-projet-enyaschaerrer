@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\v1\ApiPostController;
+use App\Http\Controllers\Api\v1\ApiSavedPostController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
