@@ -52,6 +52,7 @@ class SavedPostController extends Controller
     public function destroy(SavedPost $savedPost)
     {
         $user = Auth::user();
+        Gate::authorize('delete', $savedPost);
 
         $savedPost->delete();
 
