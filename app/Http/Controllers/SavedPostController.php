@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Post;
 use App\Models\SavedPost;
+use Illuminate\Support\Facades\Gate;
 
 class SavedPostController extends Controller
 {
